@@ -1,0 +1,17 @@
+<div class="ui container">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>Name:</strong>
+    <%= @review.review %>
+  </p>
+
+  <p>
+    <strong>Address:</strong>
+    <%= @review.ratings %>
+  </p>
+  <% if current_user.username == @review.user.username && !current_user.role %>
+    <%= link_to 'Edit', edit_review_path(@review) %> |
+  <% end %>
+  <%= link_to 'Back', restaurents_path %>
+  <%# restaurent_path(@review.restaurent_id) %>
+</div>

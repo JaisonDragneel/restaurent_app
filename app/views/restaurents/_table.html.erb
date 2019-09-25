@@ -1,0 +1,25 @@
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th><strong>Review</strong></th>
+      <th><strong>Rating</strong></th>
+      <th><strong>Posted by</strong></th>
+      <th><strong>Options</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% value = @restaurent.reviews.pluck(:review, :ratings, :user_id, :id)%>
+    <% value.each do |rew, rat, userid, r_id| %>
+    <tr>
+      <td><%= rew %></td>
+      <td><%= rat %></td>
+      <td><%=  User.find(userid).username %></td>
+      <% if current_user && !current_user.role && (current_user.id == userid) %>
+        <td><%= link_to 'Edit', edit_review_path(r_id)  %></td>
+      <% else %>
+        <td>cant edit</td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

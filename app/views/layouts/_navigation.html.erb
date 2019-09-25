@@ -1,0 +1,33 @@
+<div class="ui tiny menu">
+  <%= link_to 'Home', restaurents_path, class: "ui active item"  %>
+  <div class="right menu">
+    <div class="item">
+      <% if current_user %>
+        <div class="item">
+          <div class="ui simple dropdown">
+            <i class="dropdown icon"></i>
+            <div class="default text">More Info</div>
+            <div class="menu">
+              <div class="item">logged in as:
+                <strong><%= current_user.username %></strong>
+              </div>
+              <div class="item">
+                <%= link_to 'Edit', edit_user_registration_path%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "ui primary basic button" %>
+        </div>
+      <% else %>
+        <div class="item">
+          <%= link_to 'Sign in', new_user_session_path, class: "ui secondary basic button"  %>
+        </div>
+        <div class="item">
+          <%= link_to 'Sign up', new_user_registration_path, class: "ui primary basic button"  %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

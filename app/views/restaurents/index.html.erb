@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<div class="ui container">
+<h1>Listing Restaurents</h1>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th style = "text-align : center">Name</th>
+      <th style = "text-align : center">Address</th>
+      <th style = "text-align : center">Image</th>
+      <% if current_user && current_user.role %>
+        <th colspan="3" scope="colgroup" style = "text-align : center"> options </th>
+      <% else %>
+        <th colspan="3" scope="colgroup"> options </th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @restaurents.each do |restaurent| %>
+      <% if restaurent %>
+        <tr>
+          <td><%= restaurent.name %></td>
+          <td><%= restaurent.address %></td>
+          <td><%= image_tag restaurent.image.url(:thumb) %></td>
+          <% current_restaurent_id(restaurent.id) %>
+          <td><%= link_to 'Show', restaurent %></td>
+          <% if current_user && current_user.role %>
+            <td><%= link_to 'Edit', edit_restaurent_path(restaurent) %></td>
+            <td><%= link_to 'Destroy', restaurent, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% else %>
+        <h3>No restaurents available</h3>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user && current_user.role %>
+  <%= link_to 'List of Reviews', reviews_path, class: "ui primary button" %> |
+  <%= link_to 'New Restaurent', new_restaurent_path, class: "ui primary button" %>
+<% end %>
+
+</div>

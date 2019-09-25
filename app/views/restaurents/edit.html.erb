@@ -1,0 +1,11 @@
+<div class="ui container">
+  <h1>Editing Restaurent</h1>
+
+  <%= render 'form' %>
+  <br>
+  <% if current_user && current_user.role %>
+    <%= link_to 'Edit', @restaurent %> |
+  <% end %>
+
+  <%= link_to 'Back', restaurents_path %>
+</div>
