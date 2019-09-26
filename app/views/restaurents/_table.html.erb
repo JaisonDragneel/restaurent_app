@@ -4,18 +4,22 @@
       <th><strong>Review</strong></th>
       <th><strong>Rating</strong></th>
       <th><strong>Posted by</strong></th>
-      <th><strong>Options</strong></th>
+      <th colspan = '2' style = 'text-align : center'><strong>Options</strong></th>
     </tr>
   </thead>
   <tbody>
     <% value = @restaurent.reviews.pluck(:review, :ratings, :user_id, :id)%>
-    <% value.each do |rew, rat, userid, r_id| %>
+    <% value.each do |review, rating, user_id, review_id| %>
     <tr>
-      <td><%= rew %></td>
-      <td><%= rat %></td>
-      <td><%=  User.find(userid).username %></td>
-      <% if current_user && !current_user.role && (current_user.id == userid) %>
-        <td><%= link_to 'Edit', edit_review_path(r_id)  %></td>
+      <td><%= review %></td>
+      <td><%= rating %></td>
+      <td><%=  User.find(user_id).username %></td>
+      <% review = Review.find(review_id)%>
+      <% if current_user && !current_user.role && (current_user.id == user_id) %>
+        <td><%= link_to 'Edit', edit_review_path(review_id)  %> </td>
+        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% elsif current_user && current_user.role %>
+        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% else %>
         <td>cant edit</td>
       <% end %>

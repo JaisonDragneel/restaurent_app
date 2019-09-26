@@ -3,7 +3,6 @@ class CreateReviews < ActiveRecord::Migration
     create_table :reviews do |t|
       t.string :review
       t.integer :ratings
-      t.boolean :status
       t.integer :user_id
       t.integer :restaurent_id
 

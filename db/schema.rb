@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 20190923061405) do
   create_table "reviews", force: :cascade do |t|
     t.string   "review",        limit: 255
     t.integer  "ratings",       limit: 4
-    t.boolean  "status"
     t.integer  "user_id",       limit: 4
     t.integer  "restaurent_id", limit: 4
     t.datetime "created_at",                null: false
