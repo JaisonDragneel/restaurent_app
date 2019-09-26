@@ -18,7 +18,6 @@ class RestaurentsController < ApplicationController
 
   def create
     @restaurent = Restaurent.new(restaurent_params)
-    # @restaurent.geocode
     if @restaurent.save
       redirect_to @restaurent, notice: 'Restaurent was successfully created.'
     else
